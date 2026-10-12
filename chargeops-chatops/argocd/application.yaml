@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/chanjook1m/infra_test.git
+    repoURL: https://github.com/chanjook1m/infra-test.git
     targetRevision: feature/chargeops-gitops
     path: chargeops-chatops/overlays/dev
   destination:
