@@ -10,8 +10,8 @@ resources:
 
 images:
   - name: chanjookim/chargeops-chatops-bot
-    newTag: dev
+    newTag: pre-gitops-20261012
   - name: chanjookim/chargeops-alert-router
-    newTag: dev
+    newTag: pre-gitops-20261012
   - name: chanjookim/chargeops-mock-csms
-    newTag: dev
+    newTag: pre-gitops-20261012
