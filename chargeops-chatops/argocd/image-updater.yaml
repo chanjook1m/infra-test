@@ -1,35 +1,33 @@
 apiVersion: argocd-image-updater.argoproj.io/v1alpha1
 kind: ImageUpdater
-
 metadata:
   name: chargeops-image-updater
   namespace: argocd
-
 spec:
   writeBackConfig:
-    method: git
+    method: git:secret:chargeops-git-write
     gitConfig:
       repository: https://github.com/chanjook1m/infra-test.git
       branch: feature/chargeops-gitops
       writeBackTarget: kustomization
-
   applicationRefs:
     - namePattern: chargeops-chatops-dev
       images:
         - alias: bot
-          imageName: docker.io/chanjookim/chargeops-chatops-bot:pre-gitops-20261012
-          commonUpdateSettings:
-            updateStrategy: newest-build
-            allowTags: "regexp:^build-[0-9]+-[a-f0-9]{12}$"
-
+          imageName: docker.io/chanjookim/chargeops-chatops-bot:dev
+          
+          manifestTargets:
+            kustomize:
+              name: chanjookim/chargeops-chatops-bot
         - alias: router
-          imageName: docker.io/chanjookim/chargeops-alert-router:pre-gitops-20261012
-          commonUpdateSettings:
-            updateStrategy: newest-build
-            allowTags: "regexp:^build-[0-9]+-[a-f0-9]{12}$"
-
+          imageName: docker.io/chanjookim/chargeops-alert-router:dev
+         
+          manifestTargets:
+            kustomize:
+              name: chanjookim/chargeops-alert-router
         - alias: csms
-          imageName: docker.io/chanjookim/chargeops-mock-csms:pre-gitops-20261012
-          commonUpdateSettings:
-            updateStrategy: newest-build
-            allowTags: "regexp:^build-[0-9]+-[a-f0-9]{12}$"
+          imageName: docker.io/chanjookim/chargeops-mock-csms:dev
+          
+          manifestTargets:
+            kustomize:
+              name: chanjookim/chargeops-mock-csms
