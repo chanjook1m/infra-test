@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: chatops-bot
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: chatops-bot
+  template:
+    metadata:
+      labels:
+        app: chatops-bot
+    spec:
+      automountServiceAccountToken: false
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 10001
+        runAsGroup: 10001
+      containers:
+        - name: bot
+          image: chanjookim/chargeops-chatops-bot:initial
+          imagePullPolicy: IfNotPresent
+          command:
+            - python
+            - -m
+            - app.bot
+          envFrom:
+            - configMapRef:
+                name: chatops-config
+            - secretRef:
+                name: slack-credentials
+            - secretRef:
+                name: bot-backend-credentials
+          resources:
+            requests:
+              cpu: 50m
+              memory: 96Mi
+            limits:
+              cpu: 400m
+              memory: 256Mi

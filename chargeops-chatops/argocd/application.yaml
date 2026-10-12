@@ -1,0 +1,17 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: chargeops-chatops-dev
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/chanjook1m/infra_test.git
+    targetRevision: feature/chargeops-gitops
+    path: chargeops-chatops/overlays/dev
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: chargeops
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
