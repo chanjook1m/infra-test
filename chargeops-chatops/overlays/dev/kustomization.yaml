@@ -12,12 +12,12 @@ images:
   - name: chanjookim/chargeops-chatops-bot
     newTag: dev
     newName: docker.io/chanjookim/chargeops-chatops-bot
-    digest: sha256:e0621da84434e0160b9378887a22671972f78b391f9069089a4e32ba033b16de
+    digest: sha256:9b05cdc426726ec2b587d3c33ff6515359a0a51f5caafcabcb63bfb0833359d1
   - name: chanjookim/chargeops-alert-router
     newTag: dev
     newName: docker.io/chanjookim/chargeops-alert-router
-    digest: sha256:6230a6131c1920cbc553e0d47743ab53ea36220a7b33a817f2944afe447264f4
+    digest: sha256:cbd5bf9276de9c25dc3ac81f1f8f9d7f445d4e178aa315213df508fffb585626
   - name: chanjookim/chargeops-mock-csms
     newTag: dev
     newName: docker.io/chanjookim/chargeops-mock-csms
-    digest: sha256:10873846fd5482d99b6c631c8e6b89ded64a8535fc274736df0311fe953b8c6b
+    digest: sha256:4f9e3fd35b06c68739d03357fe5634249ab29b05e75ba50ac8deaeabe766f1b0
