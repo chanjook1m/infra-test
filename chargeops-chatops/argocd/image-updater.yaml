@@ -15,19 +15,22 @@ spec:
       images:
         - alias: bot
           imageName: docker.io/chanjookim/chargeops-chatops-bot:dev
-          
+          commonUpdateSettings:
+            updateStrategy: digest
           manifestTargets:
             kustomize:
               name: chanjookim/chargeops-chatops-bot
         - alias: router
           imageName: docker.io/chanjookim/chargeops-alert-router:dev
-         
+          commonUpdateSettings:
+            updateStrategy: digest
           manifestTargets:
             kustomize:
               name: chanjookim/chargeops-alert-router
         - alias: csms
           imageName: docker.io/chanjookim/chargeops-mock-csms:dev
-          
+          commonUpdateSettings:
+            updateStrategy: digest
           manifestTargets:
             kustomize:
               name: chanjookim/chargeops-mock-csms
