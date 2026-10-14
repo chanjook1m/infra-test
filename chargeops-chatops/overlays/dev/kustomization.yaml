@@ -31,18 +31,24 @@ images:
   - name: chanjookim/chargeops-ai-gateway
     newName: docker.io/chanjookim/chargeops-ai-gateway
     newTag: dev
+    digest: sha256:73e5d68dd36a1b9105c4164584fdc321eabc4bbc088f7f43dfcaff1f3f23eefc
   - name: chanjookim/chargeops-v2-chatops-bot
     newName: docker.io/chanjookim/chargeops-v2-chatops-bot
     newTag: dev
+    digest: sha256:d9212634feb850164ab48144ecd13954a1a7243839b8bd5c464344e339b65ec4
   - name: chanjookim/chargeops-v2-csms
     newName: docker.io/chanjookim/chargeops-v2-csms
     newTag: dev
+    digest: sha256:9ee58b1e88cc5d71656ad08c0614874c5e3ce08256807ec1c8579af097f5f6fb
   - name: chanjookim/chargeops-v2-notifier
     newName: docker.io/chanjookim/chargeops-v2-notifier
     newTag: dev
+    digest: sha256:963af29b38586c8efac183af828be49403330766a2893e721065b7230f16e7bc
   - name: chanjookim/chargeops-v2-vcharger
     newName: docker.io/chanjookim/chargeops-v2-vcharger
     newTag: dev
+    digest: sha256:ff9eb02c8c45a1c49248a6f70b22018a7505f75edfc646f0647c3d1fe9b32c0c
   - name: chanjookim/chargeops-v2-collector
     newName: docker.io/chanjookim/chargeops-v2-collector
     newTag: dev
+    digest: sha256:696d14b487acc3d52fc772bf73cb9f970b7cdc7460385a06941afd22f480b2e6
