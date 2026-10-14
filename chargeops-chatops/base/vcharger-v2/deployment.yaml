@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vcharger-v2
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: vcharger-v2
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: vcharger-v2
+    spec:
+      automountServiceAccountToken: false
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 10001
+        runAsGroup: 10001
+      containers:
+        - name: vcharger-v2
+          image: chanjookim/chargeops-v2-vcharger:dev
+          imagePullPolicy: IfNotPresent
+          args:
+            - --url
+            - ws://csms-v2:9000/ocpp
+            - --ids
+            - CH-01
+            - --ramp
+            - '1'
+            - --control-port
+            - '8081'
+          ports:
+            - name: control
+              containerPort: 8081
+          readinessProbe:
+            tcpSocket:
+              port: control
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          livenessProbe:
+            tcpSocket:
+              port: control
+            initialDelaySeconds: 15
+            periodSeconds: 20
+          resources:
+            requests:
+              cpu: 100m
+              memory: 128Mi
+            limits:
+              cpu: 500m
+              memory: 512Mi

@@ -1,0 +1,63 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: csms-v2
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: csms-v2
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: csms-v2
+    spec:
+      automountServiceAccountToken: false
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 10001
+        runAsGroup: 10001
+      containers:
+        - name: csms-v2
+          image: chanjookim/chargeops-v2-csms:dev
+          imagePullPolicy: IfNotPresent
+          envFrom:
+            - secretRef:
+                name: chargeops-app-secrets
+          env:
+            - name: REQUIRE_CN
+              value: 'false'
+            - name: HEARTBEAT_INTERVAL
+              value: '30'
+            - name: OCPP_PORT
+              value: '9000'
+            - name: METRICS_PORT
+              value: '9100'
+            - name: DB_POOL
+              value: '10'
+          ports:
+            - name: http
+              containerPort: 8000
+            - name: ocpp
+              containerPort: 9000
+            - name: metrics
+              containerPort: 9100
+          readinessProbe:
+            httpGet:
+              path: /healthz
+              port: http
+            initialDelaySeconds: 10
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: http
+            initialDelaySeconds: 20
+            periodSeconds: 20
+          resources:
+            requests:
+              cpu: 200m
+              memory: 256Mi
+            limits:
+              cpu: '1'
+              memory: 1Gi

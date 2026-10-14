@@ -34,3 +34,46 @@ spec:
           manifestTargets:
             kustomize:
               name: chanjookim/chargeops-mock-csms
+        - alias: chargeops-ai-gateway
+          imageName: docker.io/chanjookim/chargeops-ai-gateway:dev
+          commonUpdateSettings:
+            updateStrategy: digest
+          manifestTargets:
+            kustomize:
+              name: chanjookim/chargeops-ai-gateway
+        - alias: chatops-bot-v2
+          imageName: docker.io/chanjookim/chargeops-v2-chatops-bot:dev
+          commonUpdateSettings:
+            updateStrategy: digest
+          manifestTargets:
+            kustomize:
+              name: chanjookim/chargeops-v2-chatops-bot
+        - alias: csms-v2
+          imageName: docker.io/chanjookim/chargeops-v2-csms:dev
+          commonUpdateSettings:
+            updateStrategy: digest
+          manifestTargets:
+            kustomize:
+              name: chanjookim/chargeops-v2-csms
+        - alias: notifier-v2
+          imageName: docker.io/chanjookim/chargeops-v2-notifier:dev
+          commonUpdateSettings:
+            updateStrategy: digest
+          manifestTargets:
+            kustomize:
+              name: chanjookim/chargeops-v2-notifier
+        - alias: vcharger-v2
+          imageName: docker.io/chanjookim/chargeops-v2-vcharger:dev
+          commonUpdateSettings:
+            updateStrategy: digest
+          manifestTargets:
+            kustomize:
+              name: chanjookim/chargeops-v2-vcharger
+        - alias: collector-v2
+          imageName: docker.io/chanjookim/chargeops-v2-collector:dev
+          commonUpdateSettings:
+            updateStrategy: digest
+            forceUpdate: true
+          manifestTargets:
+            kustomize:
+              name: chanjookim/chargeops-v2-collector

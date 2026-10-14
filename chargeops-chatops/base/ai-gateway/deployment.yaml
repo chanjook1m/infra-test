@@ -1,0 +1,67 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ai-gateway
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ai-gateway
+  template:
+    metadata:
+      labels:
+        app: ai-gateway
+    spec:
+      automountServiceAccountToken: false
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 10001
+        runAsGroup: 10001
+      containers:
+        - name: ai-gateway
+          image: chanjookim/chargeops-ai-gateway:dev
+          imagePullPolicy: IfNotPresent
+          command:
+            - python
+            - -m
+            - uvicorn
+            - ai_gateway.health:app
+            - --host
+            - 0.0.0.0
+            - --port
+            - '8000'
+          env:
+            - name: DB_DSN
+              valueFrom:
+                secretKeyRef:
+                  name: chargeops-app-secrets
+                  key: DB_DSN
+                  optional: true
+            - name: OLLAMA_URL
+              value: http://10.10.0.1:11434
+            - name: GEN_MODEL
+              value: qwen2.5:1.5b
+            - name: EMB_MODEL
+              value: nomic-embed-text
+          ports:
+            - name: http
+              containerPort: 8000
+          readinessProbe:
+            httpGet:
+              path: /healthz
+              port: http
+            initialDelaySeconds: 3
+            periodSeconds: 5
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: http
+            initialDelaySeconds: 10
+            periodSeconds: 15
+          resources:
+            requests:
+              cpu: 100m
+              memory: 128Mi
+            limits:
+              cpu: 500m
+              memory: 512Mi
