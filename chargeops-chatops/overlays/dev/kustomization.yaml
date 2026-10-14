@@ -7,7 +7,7 @@ resources:
   - ../../base/chatops-bot
   - ../../base/alert-router
   - ../../base/mock-csms
-
+  
   - ../../base/ai-gateway
   - ../../base/chatops-bot-v2
   - ../../base/csms-v2
@@ -19,11 +19,11 @@ images:
   - name: chanjookim/chargeops-chatops-bot
     newTag: dev
     newName: docker.io/chanjookim/chargeops-chatops-bot
-    digest: sha256:fd1df81a966ab8f0343c04414de9c3f8f6ee224e1f93aa60efe061c82b0763be
+    digest: sha256:38e09b7d66502853009b8cdec7b1dc0f28f71b5e8d3b6e56928a1b9b8e815582
   - name: chanjookim/chargeops-alert-router
     newTag: dev
     newName: docker.io/chanjookim/chargeops-alert-router
-    digest: sha256:0827758df69d6c6c848acd2e8dd4d504e9661a95b2a41223b40ddf307b45766d
+    digest: sha256:8f05ad28f982f7b751685c7949fd50342b61e6b49d3ab6d79fbcb32351745adb
   - name: chanjookim/chargeops-mock-csms
     newTag: dev
     newName: docker.io/chanjookim/chargeops-mock-csms
